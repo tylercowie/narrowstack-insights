@@ -1,276 +1,155 @@
-# Metabase-Style Embedded Dashboard Implementation
+# Narrowstack Insights
 
-A comprehensive React TypeScript implementation of Metabase-style dashboards with full embedding capabilities, demonstrating all component types, filter widgets, and embedding modes.
+A modern, interactive dashboard application built with React, TypeScript, and Vite. Features editable table columns, inline text editing, and a comprehensive dashboard system inspired by Metabase.
 
 ## 🚀 Features
 
-### Dashboard Components
-- **Question Cards**: Bar, line, area, pie, scatter, funnel, gauge, progress, number, trend, table, pivot, and map visualizations
-- **Text Cards**: Full Markdown support with variable replacement and conditional content
-- **Link Cards**: Dynamic URLs with parameter substitution
-- **Action Cards**: Query and HTTP action buttons with confirmations
-- **Iframe Cards**: Embed external content with sandbox controls
-- **Static Cards**: Non-interactive visualization snapshots
+### 📊 **Editable Table Columns**
+- **Column Configuration**: Click the settings icon (⚙️) on any table to configure columns
+- **Format Options**: Text, Number, Currency, Percent, Date formatting
+- **Visibility Control**: Show/hide columns as needed
+- **Alignment**: Left, Center, Right alignment options
+- **Editability**: Control which columns can be edited
 
-### Filter Widgets
-- **Date/Time**: Single date, date range, relative dates with grouping options
-- **Number**: Input fields, sliders, operators (=, >, <, between)
-- **Text/Category**: Dropdowns, search boxes, autocomplete, multi-select
-- **Location**: Country, state, city, ZIP code selectors
-- **Boolean**: Toggle switches
-- **Custom**: Field filters for SQL templates
+### ✏️ **Inline Cell Editing**
+- **Click to Edit**: Click any editable table cell to modify its value
+- **Validation**: Enter to save, Escape to cancel
+- **Visual Feedback**: Edit icons appear on hover
 
-### Embedding Types
-1. **Public Embeds**: Share via public links/iframes, no auth required
-2. **Signed Embeds**: Secure with JWT signing, locked parameters
-3. **Interactive Embeds**: Full interactivity with SSO, row-level security
-4. **SDK Embeds**: Component-level embedding in React apps
+### 📝 **Editable Titles & Subtitles**
+- **All Card Text**: Every card title and subtitle is now editable
+- **Inline Editing**: Click on titles to edit them directly
+- **Real-time Updates**: Changes are saved immediately
 
-### Layout & Styling
-- **Grid System**: 18-column responsive grid with drag-and-drop
-- **Tabs**: Multi-view dashboards with shared filters
-- **Themes**: Light/dark modes, custom CSS support
-- **Responsive**: Mobile-friendly with breakpoints
-- **Print-ready**: Optimized print styles
+### 🎨 **Rich Visualizations**
+- **Multiple Chart Types**: Bar, Line, Pie, Funnel, Gauge, Number cards
+- **Responsive Design**: Charts adapt to different screen sizes
+- **Customizable Colors**: Configurable color schemes
+- **Interactive Elements**: Hover tooltips and legends
+
+### 🔧 **Dashboard Features**
+- **Parameter Filters**: Dynamic filtering with multiple filter types
+- **Tabbed Layout**: Organize dashboards with multiple tabs
+- **Embedding Support**: Embed dashboards in other applications
+- **Export Options**: Download data and charts
+
+## 🛠️ Tech Stack
+
+- **Frontend**: React 18, TypeScript
+- **Build Tool**: Vite
+- **Styling**: Tailwind CSS
+- **Charts**: Recharts
+- **Icons**: Lucide React
+- **State Management**: React Context API
+
+## 📦 Installation
+
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/tylercowie/narrowstack-insights.git
+   cd narrowstack-insights
+   ```
+
+2. **Install dependencies**
+   ```bash
+   npm install
+   ```
+
+3. **Start the development server**
+   ```bash
+   npm run dev
+   ```
+
+4. **Open your browser**
+   Navigate to `http://localhost:3000`
+
+## 🎯 Usage
+
+### Editing Table Columns
+1. Find a table visualization in the dashboard
+2. Click the settings icon (⚙️) in the top-right corner of the table
+3. Configure column properties:
+   - **Visibility**: Toggle columns on/off
+   - **Format**: Choose display format (text, number, currency, etc.)
+   - **Alignment**: Set text alignment
+   - **Width**: Adjust column width
+   - **Editability**: Enable/disable cell editing
+
+### Editing Table Data
+1. Click on any editable cell in a table
+2. Type your new value
+3. Press Enter to save or Escape to cancel
+
+### Editing Card Titles
+1. Click on any card title or subtitle
+2. Type your new text
+3. Press Enter to save or Escape to cancel
 
 ## 📁 Project Structure
 
 ```
-narrowstack-insights/
-├── src/
-│   ├── components/
-│   │   ├── cards/          # Card components (Question, Text, Link, etc.)
-│   │   ├── filters/        # Filter widgets (Date, Number, Text, etc.)
-│   │   ├── layout/         # Layout components (Grid, Header, Tabs)
-│   │   └── embeds/         # Embedding components and playground
-│   ├── lib/
-│   │   ├── dashboard-context.tsx  # Dashboard state management
-│   │   └── embed-utils.ts        # Embedding utilities
-│   ├── types/              # TypeScript type definitions
-│   ├── data/               # Sample dashboard configurations
-│   └── styles/             # Global styles and Tailwind config
-├── public/                 # Static assets
-└── docs/                   # Additional documentation
+src/
+├── components/
+│   ├── cards/          # Card components (QuestionCard, TextCard, etc.)
+│   ├── embeds/         # Embedding components
+│   ├── filters/        # Filter components
+│   └── layout/         # Layout components (DashboardGrid, etc.)
+├── data/               # Sample data and dashboards
+├── lib/                # Utilities and context
+├── styles/             # Global styles
+└── types/              # TypeScript type definitions
 ```
 
-## 🛠️ Installation
+## 🔧 Configuration
 
+### Dashboard Configuration
+Dashboards are configured in `src/data/sampleDashboards.ts`. Each dashboard includes:
+- **Cards**: Visualizations and content
+- **Parameters**: Filterable parameters
+- **Tabs**: Multiple dashboard views
+- **Embed Config**: Embedding settings
+
+### Card Types
+- **QuestionCard**: Data visualizations (charts, tables)
+- **TextCard**: Rich text content
+- **LinkCard**: External links
+- **ActionCard**: Interactive buttons
+- **IframeCard**: Embedded content
+
+## 🚀 Deployment
+
+### Build for Production
 ```bash
-# Clone the repository
-git clone <repository-url>
-cd narrowstack-insights
-
-# Install dependencies
-npm install
-
-# Start development server
-npm run dev
-
-# Build for production
 npm run build
 ```
 
-## 📊 Usage Examples
-
-### Basic Dashboard Embedding
-
-```typescript
-// Public embed
-<iframe 
-  src="http://localhost:3000/embed/public/dashboard/sales-analytics"
-  width="100%"
-  height="600"
-  frameborder="0"
-></iframe>
-
-// With parameters
-<iframe 
-  src="http://localhost:3000/embed/public/dashboard/sales-analytics?param_region=Europe&param_date_range=last_30_days"
-  width="100%"
-  height="600"
-  frameborder="0"
-></iframe>
-```
-
-### Signed Embedding
-
-```typescript
-import { generateEmbedUrl, generateSignedToken } from '@/lib/embed-utils';
-
-const embedUrl = generateEmbedUrl({
-  dashboardId: 'customer-insights',
-  embedType: 'signed',
-  baseUrl: 'http://localhost:3000',
-  parameters: {
-    region: 'North America',
-    date_range: 'last_quarter'
-  },
-  embedConfig: {
-    bordered: false,
-    hideParameters: false,
-    lockedParameters: {
-      company_id: '12345'
-    }
-  },
-  secretKey: process.env.METABASE_SECRET_KEY
-});
-```
-
-### React SDK Usage
-
-```typescript
-import { DashboardProvider, DashboardLayout } from '@/components';
-import { dashboard } from '@/data/sampleDashboards';
-
-function App() {
-  return (
-    <DashboardProvider 
-      dashboard={dashboard}
-      embedConfig={{
-        bordered: false,
-        theme: 'dark'
-      }}
-      onParameterChange={(params) => console.log('Parameters:', params)}
-    >
-      <DashboardLayout />
-    </DashboardProvider>
-  );
-}
-```
-
-## 🎨 Customization
-
-### Theme Customization
-
-```css
-/* Custom theme variables */
-:root {
-  --metabase-primary: #509EE3;
-  --metabase-secondary: #88BF4D;
-  --metabase-danger: #ED6E6E;
-  --metabase-warning: #F9CF48;
-}
-
-/* Dark theme overrides */
-.dark {
-  --metabase-gray-100: #2E353B;
-  --metabase-gray-700: #F9FBFC;
-}
-```
-
-### Parameter Locking
-
-```typescript
-// Lock specific parameters
-embedConfig: {
-  lockedParameters: {
-    company_id: '12345',
-    region: 'North America'
-  },
-  hiddenParameters: ['company_id']
-}
-```
-
-### Custom Card Types
-
-```typescript
-// Extend the Card type
-interface CustomCard extends BaseCard {
-  type: 'custom';
-  customProperty: string;
-}
-
-// Create custom card component
-const CustomCard: React.FC<{ card: CustomCard }> = ({ card }) => {
-  return (
-    <BaseCard card={card}>
-      {/* Custom implementation */}
-    </BaseCard>
-  );
-};
-```
-
-## 🔒 Security Considerations
-
-1. **JWT Signing**: Always sign embeds server-side, never expose secret keys
-2. **Sandboxing**: Configure iframe sandbox attributes appropriately
-3. **Parameter Validation**: Validate all URL parameters server-side
-4. **Row-Level Security**: Implement data sandboxes for multi-tenant scenarios
-5. **CORS**: Configure proper CORS headers for embedded dashboards
-
-## 📝 API Reference
-
-### Dashboard Context
-
-```typescript
-const {
-  dashboard,          // Current dashboard configuration
-  parameters,         // Current parameter values
-  embedConfig,        // Embedding configuration
-  setParameter,       // Update single parameter
-  setParameters,      // Update multiple parameters
-  refreshDashboard,   // Trigger refresh
-  changeTab,          // Switch tabs
-  onEvent,           // Subscribe to events
-} = useDashboard();
-```
-
-### Embed Utilities
-
-```typescript
-// Generate embed URL
-generateEmbedUrl(options: EmbedOptions): string
-
-// Generate signed JWT token
-generateSignedToken(options: SignOptions): string
-
-// Parse embed parameters from URL
-parseEmbedParameters(url: string): { parameters, embedConfig }
-
-// Generate iframe HTML code
-generateIframeCode(options: IframeOptions): string
-
-// Check parameter visibility/editability
-isParameterVisible(parameter, embedConfig): boolean
-isParameterEditable(parameter, embedConfig): boolean
-```
-
-## 🧪 Testing
-
+### Preview Production Build
 ```bash
-# Run tests
-npm test
-
-# Run tests with coverage
-npm run test:coverage
-
-# E2E tests
-npm run test:e2e
+npm run preview
 ```
-
-## 🚦 Performance Optimization
-
-1. **Lazy Loading**: Cards are only rendered when visible
-2. **Memoization**: Heavy computations are memoized
-3. **Virtual Scrolling**: Large tables use virtual scrolling
-4. **Query Caching**: Results are cached with configurable TTL
-5. **Progressive Enhancement**: Core functionality works without JS
-
-## 📄 License
-
-MIT License - see LICENSE file for details
 
 ## 🤝 Contributing
 
 1. Fork the repository
-2. Create your feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit your changes (`git commit -m 'Add some amazing feature'`)
+2. Create a feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add amazing feature'`)
 4. Push to the branch (`git push origin feature/amazing-feature`)
 5. Open a Pull Request
 
-## 📚 Resources
+## 📄 License
 
-- [Metabase Documentation](https://www.metabase.com/docs/latest/)
-- [Embedding Guide](https://www.metabase.com/docs/latest/embedding/introduction)
-- [API Reference](https://www.metabase.com/docs/latest/api-documentation)
-- [Component Library](https://www.metabase.com/docs/latest/developers-guide/custom-viz) 
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## 🙏 Acknowledgments
+
+- Inspired by Metabase's dashboard interface
+- Built with modern React patterns and TypeScript
+- Uses Recharts for beautiful data visualizations
+
+## 📞 Support
+
+If you have any questions or need help, please open an issue on GitHub.
+
+---
+
+**Made with ❤️ by Tyler Cowie** 
