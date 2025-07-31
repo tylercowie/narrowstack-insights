@@ -9,7 +9,6 @@ interface BooleanFilterProps {
 }
 
 export const BooleanFilter: React.FC<BooleanFilterProps> = ({
-  parameter,
   value,
   onChange,
   disabled,

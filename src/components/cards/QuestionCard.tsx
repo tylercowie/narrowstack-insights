@@ -115,7 +115,7 @@ export const QuestionCard: React.FC<QuestionCardProps> = ({ card }) => {
           fill="#8884d8"
           dataKey="value"
         >
-          {data.map((entry: any, index: number) => (
+          {data.map((_: any, index: number) => (
             <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
           ))}
         </Pie>
@@ -168,7 +168,7 @@ export const QuestionCard: React.FC<QuestionCardProps> = ({ card }) => {
           isAnimationActive
         >
           <LabelList position="center" fill="#fff" />
-          {data.map((entry: any, index: number) => (
+          {data.map((_: any, index: number) => (
             <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
           ))}
         </Funnel>

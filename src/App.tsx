@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import GridLayout from 'react-grid-layout';
 import {
   LineChart, Line, BarChart, Bar, PieChart, Pie, Cell, AreaChart, Area,
-  XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer,
-  ScatterChart, Scatter, RadarChart, Radar, PolarGrid, PolarAngleAxis, PolarRadiusAxis
+  XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer,
+  ScatterChart, Scatter
 } from 'recharts';
 import 'react-grid-layout/css/styles.css';
 import 'react-resizable/css/styles.css';
@@ -467,13 +467,8 @@ export const App: React.FC = () => {
     };
     
     // Calculate responsive font sizes based on card dimensions
-    const cardPixelWidth = (containerWidth / 18) * card.w;
-    const cardPixelHeight = 50 * card.h;
     const isSmallCard = card.w < 4 || card.h < 3;
     const isMediumCard = card.w < 6 || card.h < 4;
-    
-    const numberFontSize = isSmallCard ? '2xl' : isMediumCard ? '3xl' : '5xl';
-    const textFontSize = isSmallCard ? 'xs' : 'sm';
 
     const content: Record<CardType, JSX.Element> = {
       line: (
@@ -1415,7 +1410,6 @@ export const App: React.FC = () => {
           className="layout"
           layout={cards.filter(card => {
             // Filter cards based on active tab
-            const tabIndex = tabs.indexOf(activeTab);
             if (dashboardName.includes('Home Services')) {
               // For Home Services template, show cards based on their position
               switch (activeTab) {

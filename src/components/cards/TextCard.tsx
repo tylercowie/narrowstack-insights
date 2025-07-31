@@ -32,7 +32,7 @@ export const TextCard: React.FC<TextCardProps> = ({ card }) => {
     }
 
     // Handle conditionals: [[text if {{param}} exists]]
-    processed = processed.replace(/\[\[(.+?) if \{\{(\w+)\}\} exists\]\]/g, (match, text, paramName) => {
+    processed = processed.replace(/\[\[(.+?) if \{\{(\w+)\}\} exists\]\]/g, (_match, text, paramName) => {
       const param = dashboard?.parameters.find(p => 
         p.slug === paramName || p.name === paramName || p.id === paramName
       );

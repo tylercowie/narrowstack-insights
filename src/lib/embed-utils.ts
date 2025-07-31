@@ -1,5 +1,5 @@
 import jwt from 'jsonwebtoken';
-import { Dashboard, EmbedConfig, EmbedType } from '@/types';
+import { EmbedConfig, EmbedType } from '@/types';
 
 interface EmbedOptions {
   dashboardId: string;

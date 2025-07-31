@@ -1,12 +1,11 @@
 import React, { createContext, useContext, useState, useCallback, useEffect } from 'react';
-import { Dashboard, Parameter, DashboardEvent, EmbedConfig } from '@/types';
+import { Dashboard, DashboardEvent, EmbedConfig } from '@/types';
 
 interface DashboardContextValue {
   dashboard: Dashboard | null;
   parameters: Record<string, any>;
   embedConfig: EmbedConfig;
   isLoading: boolean;
-  error: string | null;
   
   // Actions
   setParameter: (paramId: string, value: any) => void;
@@ -52,7 +51,6 @@ export const DashboardProvider: React.FC<DashboardProviderProps> = ({
 }) => {
   const [parameters, setParametersState] = useState<Record<string, any>>(initialParameters);
   const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState<string | null>(null);
   const [activeTabId, setActiveTabId] = useState(dashboard.tabs[0]?.id);
   
   // Event handlers
@@ -60,8 +58,6 @@ export const DashboardProvider: React.FC<DashboardProviderProps> = ({
   
   // Merge embed configs
   const embedConfig: EmbedConfig = {
-    bordered: true,
-    titled: true,
     downloadButtons: true,
     fullscreen: true,
     ...(dashboard.embedConfig || {}),
@@ -216,7 +212,6 @@ export const DashboardProvider: React.FC<DashboardProviderProps> = ({
     parameters: effectiveParameters,
     embedConfig,
     isLoading,
-    error,
     setParameter,
     setParameters,
     refreshDashboard,

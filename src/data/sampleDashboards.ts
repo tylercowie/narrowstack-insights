@@ -351,7 +351,7 @@ Key metrics include:
 ];
 
 // Generate sample data for visualizations
-export const generateSampleData = (visualization: string, params?: any) => {
+export const generateSampleData = (visualization: string, _params?: any) => {
   switch (visualization) {
     case 'number':
       return {
